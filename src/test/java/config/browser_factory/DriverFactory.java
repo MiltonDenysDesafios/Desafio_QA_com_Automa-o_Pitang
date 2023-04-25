@@ -22,9 +22,9 @@ public class DriverFactory {
                         driver = new ChromeDriver(options);
                         break;
                 }
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 driver.manage().window().maximize();
-                driver.get("url");
+                driver.get("https://demoqa.com/books");
             }
         }catch(Exception e){
         }
