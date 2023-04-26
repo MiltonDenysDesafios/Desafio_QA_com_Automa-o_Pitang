@@ -1,12 +1,15 @@
 package pages;
 
 import config.browser_factory.DriverFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -93,8 +96,8 @@ public class BasePage {
     public static void clearField(By by) throws Exception {
         DriverFactory.getDriver().findElement(by).clear();
     }
-    public static void switchToIFrame(String id)throws Exception{
-        DriverFactory.getDriver().switchTo().frame(id);
+    public static void switchToIFrame(String iframe)throws Exception{
+        DriverFactory.getDriver().switchTo().frame(iframe);
     }
     public static void switchToDefaultContent()throws Exception{
         DriverFactory.getDriver().switchTo().defaultContent();
@@ -133,5 +136,19 @@ public class BasePage {
     public static void scrollToTheTop() throws Exception {
         JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getDriver();
         js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+    }
+    public static void captureScreenshot(WebDriver driver, String screenshotName) {
+        try {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File source = ts.getScreenshotAs(OutputType.FILE);
+            Path destination = Paths.get("screenshots", screenshotName);
+            try {
+                Files.createDirectories(destination.getParent());
+                Files.move(source.toPath(), destination);
+            } catch (IOException e) {
+            }
+        } catch (Exception e) {
+            System.out.println("Fail while taking a screenshot: " + e.getMessage());
+        }
     }
 }

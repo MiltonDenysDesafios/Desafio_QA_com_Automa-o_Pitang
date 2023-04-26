@@ -26,8 +26,13 @@ Feature: Book Store
     When I fill the fields UserName "johndoe123" and Password "P@ssw0rd123"
     And I click on login button
     Then I validate if user name "JohnDoe123" is correct
-    And I search a book "JavaScript"
-    #fazer uma lista para escolher um livro especifico
-  #capturar a proxima tela com os dados do livro
-  #Como validação de sucesso, registre a captura de tela exibindo a
-  #mensagem de sucesso “Book added to your collection.”
+    Given I search a book "JavaScript"
+    When I select a book that is in the list "Learning JavaScript Design Patterns"
+    Then I validate if informations page for "Learning JavaScript Design Patterns" book is correct
+    When I click on Add To Your Collection button
+    Then I validate if message "Book added to your collection." is displayed in a pop up
+
+  @ApiBookStore
+  Scenario: Validation that searches your collection in the newly added book and compares the information displayed in the table
+
+
