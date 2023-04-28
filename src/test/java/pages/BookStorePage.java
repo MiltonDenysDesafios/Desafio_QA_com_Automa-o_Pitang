@@ -104,7 +104,7 @@ public class BookStorePage extends BasePage{
     }
     public static void validatePopUpMessage(String message){
         try {
-            switchToIFrame(("//iframe[starts-with(@id, 'google_ads_iframe')][contains(@title, '3rd party ad content')]"));
+            switchToIFrame(("//iframe[starts-with(@id, 'aswift_0')]"));
 
             String messagePopUp = getText(By.cssSelector("google_ads_iframe_/21849154601,22343295815/Ad.Plus-728x90_0"));
             System.out.println();

@@ -32,7 +32,5 @@ Feature: Book Store
     When I click on Add To Your Collection button
     Then I validate if message "Book added to your collection." is displayed in a pop up
 
-  @ApiBookStore
-  Scenario: Validation that searches your collection in the newly added book and compares the information displayed in the table
 
 
